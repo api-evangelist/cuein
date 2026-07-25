@@ -1,23 +1,117 @@
 aid: cuein
 name: Cuein
-description: Cuein is a company surfaced as a portfolio company of lightspeed-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Cuein is an AI-native customer-experience platform ("co-pilot for customer experience
+  teams") that unifies structured and unstructured customer-support data and applies
+  generative AI to surface contact reasons, root causes, resolutions, and metrics such as
+  Inferred CSAT and Resolution Rate. Its public developer surface exposes two REST APIs:
+  an Insights API for retrieving per-conversation and bulk conversation insights over a
+  date range, and an Answers API that generates answers grounded in a tenant's knowledge
+  articles and documents. Both APIs use x-api-key authentication and are documented on a
+  ReadMe-hosted developer hub. Cuein was acquired by ServiceNow (announced Q1 2025);
+  the standalone developer hub remains live. Backed by Lightspeed Venture Partners.
 url: https://raw.githubusercontent.com/api-evangelist/cuein/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - lightspeed-venture-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-acquired-by: servicenow
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://files.readme.io/083b62d-Logo.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Customer Experience
+- Customer Support
+- Conversation Intelligence
+- Generative AI
+- Insights
+- Knowledge Base
+- Contact Center
+apis:
+- aid: cuein:cuein-answers-api
+  name: Cuein answers API
+  description: APIs for getting answers
+  humanURL: https://cuein-api.readme.io/reference
+  baseURL: https://api.cuein.ai/insights/v1
+  tags:
+  - answers
+  properties:
+  - type: OpenAPI
+    url: openapi/cuein-answers-api-openapi.yml
+- aid: cuein:cuein-conversations-api
+  name: Cuein conversations API
+  description: APIs for retrieving customer-support interaction insights
+  humanURL: https://cuein-api.readme.io/reference
+  baseURL: https://api.cuein.ai/insights/v1
+  tags:
+  - conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/cuein-conversations-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DomainSecurity
+  url: security/cuein-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/cuein-agentic-access.yml
+- type: Authentication
+  url: authentication/cuein-authentication.yml
+- type: LLMsTxt
+  url: llms/cuein-llms.txt
+- type: MCPServer
+  url: mcp/cuein-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/cuein-conventions.yml
+- type: ErrorCatalog
+  url: errors/cuein-problem-types.yml
+- type: DataModel
+  url: data-model/cuein-data-model.yml
+- type: Conformance
+  url: conformance/cuein-conformance.yml
+- type: Lifecycle
+  url: lifecycle/cuein-lifecycle.yml
+- type: TrustCenter
+  url: security/cuein-trust-center.yml
+- type: DeveloperPortal
+  url: https://developer.cuein.ai/
+- type: Documentation
+  url: https://cuein-api.readme.io/docs/getting-started
+- type: APIReference
+  url: https://cuein-api.readme.io/reference
+- type: GettingStarted
+  url: https://cuein-api.readme.io/docs/getting-started
+- type: Blog
+  url: https://cuein.ai/blog
+- type: Support
+  url: mailto:support@cuein.ai
+- type: SignUp
+  url: https://app.cuein.ai
+- type: TermsOfService
+  url: https://cuein.ai/terms
+- type: PrivacyPolicy
+  url: https://cuein.ai/privacy
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

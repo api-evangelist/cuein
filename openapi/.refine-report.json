@@ -1,0 +1,16 @@
+{
+  "provider": "cuein",
+  "sources": [
+    "cuein-answers-api-openapi.yml",
+    "cuein-conversations-api-openapi.yml"
+  ],
+  "outputs": [
+    "cuein-answers-api-openapi.yml",
+    "cuein-conversations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

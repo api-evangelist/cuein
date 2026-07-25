@@ -1,0 +1,238 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cuein Answers API",
+    "description": "API for Cuein Answers Service.",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Cuein",
+    "url": "https://cuein.ai"
+  },
+  "servers": [
+    {
+      "url": "https://api.cuein.ai/answers/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "answers",
+      "description": "APIs for getting answers"
+    }
+  ],
+  "paths": {
+    "/answer": {
+      "get": {
+        "tags": [
+          "answers"
+        ],
+        "summary": "Answer question based on Knowledge Articles and other Documents",
+        "operationId": "getAnswer",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/question"
+          },
+          {
+            "$ref": "#/components/parameters/customerId"
+          },
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/sessionId"
+          },
+          {
+            "$ref": "#/components/parameters/documentType"
+          },
+          {
+            "$ref": "#/components/parameters/filter"
+          },
+          {
+            "$ref": "#/components/parameters/numDocuments"
+          },
+          {
+            "$ref": "#/components/parameters/userType"
+          },
+          {
+            "$ref": "#/components/parameters/userName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Tenant",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "question": {
+        "name": "question",
+        "in": "query",
+        "description": "Question to be answered",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "sessionId": {
+        "name": "sessionId",
+        "in": "query",
+        "description": "Unique identifier for the chat session in which the question was asked",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "customerId": {
+        "name": "customerId",
+        "in": "query",
+        "description": "Customer making the request",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "tenantId": {
+        "name": "tenantId",
+        "in": "query",
+        "description": "Identifier for the tenant/client whose documents will be used for answering the question",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "documentType": {
+        "name": "documentType",
+        "in": "query",
+        "description": "Type of document to be used for search",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "public",
+            "internal",
+            "all"
+          ],
+          "default": "public"
+        }
+      },
+      "filter": {
+        "name": "filter",
+        "in": "query",
+        "description": "Key-Value pairs to be used as filters. All filters will be treated as AND. Ex. ?filter[filter_1]=val_1,val_2&filter[filter_2]=val_3,val_4.",
+        "schema": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "style": "form",
+        "explode": true
+      },
+      "numDocuments": {
+        "name": "numDocuments",
+        "in": "query",
+        "description": "Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "userType": {
+        "name": "userType",
+        "in": "query",
+        "description": "Type of user making the request",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "chatbot",
+            "customer",
+            "agent",
+            "admin"
+          ]
+        }
+      },
+      "userName": {
+        "name": "userName",
+        "in": "query",
+        "description": "Name of user making the request",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "AnswerResponse": {
+        "required": [
+          "answer",
+          "answered"
+        ],
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string",
+            "description": "Answer to the question"
+          },
+          "referenceDocuments": {
+            "type": "array",
+            "description": "Documents used in the Answer",
+            "items": {
+              "$ref": "#/components/schemas/ReferenceDocument"
+            }
+          },
+          "answered": {
+            "type": "boolean",
+            "description": "Whether or not the question was answered"
+          }
+        }
+      },
+      "ReferenceDocument": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the Document"
+          },
+          "id": {
+            "type": "string",
+            "description": "Document Id"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}

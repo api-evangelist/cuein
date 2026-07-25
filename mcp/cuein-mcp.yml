@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+note: >-
+  No official hosted/remote Cuein MCP server was found. Tool list derived
+  one-per-operation from the OpenAPI as a candidate; operationIds are verbatim.
+server:
+  name: cuein
+  transport: http
+tools:
+  - name: retrieve_conversation_insights
+    description: Retrieve paginated conversation insights records based on date range.
+    source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+  - name: schedule_conversation_text_deletion
+    description: Schedule deletion of conversation utterance text from insight records by source ids.
+    source_operation: openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple conversations
+  - name: retrieve_last_processed_timestamp
+    description: Retrieve the latest processed conversation timestamp.
+    source_operation: openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
+  - name: retrieve_conversation_insight
+    description: Retrieve a single conversation insights record by id.
+    source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
+  - name: get_answer
+    description: Answer a question based on knowledge articles and other documents.
+    source_operation: openapi/cuein-answers-openapi.json#getAnswer

@@ -1,0 +1,54 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+entities:
+  - name: Conversation
+    schema: ConversationResponse
+    id_field: sourceId
+    description: A single customer-support interaction with derived insights.
+    fields: [sourceId, summary, timestamp, processedTimestamp, additionalId, intents, rootCauses, resolutions, policies, metrics, botMetrics, agentMetrics, sourceMetadata]
+  - name: ConversationBulk
+    schema: ConversationBulkResponse
+    description: Paginated envelope of Conversation records.
+    fields: [meta, conversations]
+  - name: Insight
+    schema: InsightResponse
+    description: A categorized insight (intent/root-cause/resolution/policy) within a conversation.
+    fields: [summary, utteranceIndex, messageId, categories, generatedLabel]
+  - name: Category
+    schema: CategoryDetails
+    fields: [label, score]
+  - name: Metric
+    schema: MetricResponse
+    description: Named metric (e.g. Inferred CSAT, Resolution Rate).
+    fields: [label, value]
+  - name: LastProcessed
+    schema: LastProcessedResponse
+    fields: [timestamp, latestMessageTimestamp]
+  - name: Answer
+    schema: AnswerResponse
+    description: Generated answer from knowledge articles/documents.
+  - name: ReferenceDocument
+    schema: ReferenceDocument
+    description: Source document cited by an Answer.
+relationships:
+  - from: ConversationBulk
+    to: Conversation
+    type: has_many
+    via: conversations
+  - from: Conversation
+    to: Insight
+    type: has_many
+    via: intents/rootCauses/resolutions/policies
+  - from: Conversation
+    to: Metric
+    type: has_many
+    via: metrics/botMetrics/agentMetrics
+  - from: Insight
+    to: Category
+    type: has_many
+    via: categories
+  - from: Answer
+    to: ReferenceDocument
+    type: has_many
+    via: references

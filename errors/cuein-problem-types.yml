@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+format: http-status
+note: >-
+  Cuein returns plain HTTP status codes with a human-readable description; no
+  application/problem+json (RFC 9457) envelope is declared in the OpenAPI. Titles
+  below are taken verbatim from the OpenAPI response descriptions.
+problems:
+  - status: 400
+    title: Invalid Request Payload
+    source_operations:
+      - openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+      - openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple conversations
+      - openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
+      - openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
+      - openapi/cuein-answers-openapi.json#getAnswer
+    remediation: Validate required query/path parameters (timeframeFrom, timeframeTo, limit, id, sourceIds, question) before sending.
+  - status: 401
+    title: Authentication Failure
+    source_operations:
+      - openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+      - openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple conversations
+      - openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
+      - openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
+    remediation: Supply a valid x-api-key header issued by Cuein.
+  - status: 500
+    title: Internal Cuein Error
+    source_operations:
+      - openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+      - openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple conversations
+      - openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
+      - openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
+    remediation: Retry with backoff; contact support@cuein.ai if it persists.

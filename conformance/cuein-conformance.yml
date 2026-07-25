@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securityScheme declared
+  - id: oidc
+    conforms: false
+  - id: api-key-auth
+    conforms: true
+    evidence: ApiKeyAuth (x-api-key header) on all operations
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: error responses use plain HTTP status, no application/problem+json
+  - id: cursor-pagination
+    conforms: true
+    evidence: nextToken/limit cursor pagination on GET /conversations
+  - id: openapi-3.0
+    conforms: true
+    evidence: both specs declare openapi 3.0.1
+  - id: json-api
+    conforms: false
+  - id: fhir
+    conforms: false

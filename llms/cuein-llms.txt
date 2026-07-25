@@ -1,0 +1,13 @@
+# Cuein API Documentation
+
+> Cuein APIs help with  customer interaction insights (contact reasons, root causes, API driven metrics like Inferred CSAT, Resolution Rate) as well as APIs for returning answers from knowledge bases.
+
+## Guides
+- [API Documentation](https://cuein-api.readme.io/docs/getting-started.md)
+
+## API Reference
+- [Retrieve insights for multiple conversations](https://cuein-api.readme.io/reference/retrieve-insights-for-multiple-conversations.md): Retrieve paginated conversation insights records based on date range as input
+- [Schedule deletion of conversation text](https://cuein-api.readme.io/reference/schedule-deletion-of-conversation-text-for-multiple-conversations.md): Schedule deletion of conversation text (utterance text) from insight records based on transcript ids
+- [Retrieve latest processed conversation timestamp](https://cuein-api.readme.io/reference/retrieve-the-latest-processed-conversation-timestamp.md): Retrieves the latest updated timestamp of the conversation processed and ready for access
+- [Retrieve insights for a conversation](https://cuein-api.readme.io/reference/retrieve-insights-for-a-conversation.md): Retrieve single conversation insights record by id
+- [Answer question based on Knowledge Articles and other Documents](https://cuein-api.readme.io/reference/getanswer.md)

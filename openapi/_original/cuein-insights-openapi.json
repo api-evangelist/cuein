@@ -1,0 +1,511 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cuein Insights API",
+    "description": "This document outlines the APIs provided by Cuein Inc (Co-pilot for supporting Customer Experience Teams).",
+    "termsOfService": "https://cuein.ai/terms",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Cuein.",
+    "url": "http://cuein.ai"
+  },
+  "servers": [
+    {
+      "url": "https://api.cuein.ai/insights/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "conversations",
+      "description": "APIs for retrieving customer-support interaction insights"
+    }
+  ],
+  "paths": {
+    "/conversations": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Retrieve paginated conversation insights records based on date range as input",
+        "operationId": "Retrieve insights for multiple conversations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/timeframeFrom"
+          },
+          {
+            "$ref": "#/components/parameters/timeframeTo"
+          },
+          {
+            "$ref": "#/components/parameters/nextToken"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationBulkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request Payload",
+            "content": {}
+          },
+          "401": {
+            "description": "Authentication Failure",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Cuein Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Schedule deletion of conversation text (utterance text) from insight records based on source ids",
+        "operationId": "Schedule deletion of conversation text for multiple conversations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/sourceIds"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid Request Payload",
+            "content": {}
+          },
+          "401": {
+            "description": "Authentication Failure",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Cuein Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/conversations/meta/lastProcessed": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Retrieves the latest updated timestamp of conversation that has been processed and ready for access.",
+        "operationId": "Retrieve the latest processed conversation timestamp",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LastProcessedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request Payload",
+            "content": {}
+          },
+          "401": {
+            "description": "Authentication Failure",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Cuein Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/conversations/{id}": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Retrieve single conversation insights record by id",
+        "operationId": "Retrieve insights for a conversation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConversationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request Payload",
+            "content": {}
+          },
+          "401": {
+            "description": "Authentication Failure",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Cuein Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "id": {
+        "name": "id",
+        "in": "path",
+        "description": "unique customer dataset specific id (caseId/transcriptId)",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "timeframeFrom": {
+        "name": "timeframeFrom",
+        "in": "query",
+        "description": "Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "timeframeTo": {
+        "name": "timeframeTo",
+        "in": "query",
+        "description": "Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "nextToken": {
+        "name": "nextToken",
+        "in": "query",
+        "description": "Token to use for next batch lookup (empty returns the first batch of records)",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Limit of results to return (default system limits exist)",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "sourceIds": {
+        "name": "sourceIds",
+        "in": "query",
+        "description": "list of unique customer dataset specific id (caseId/transcriptId)",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ConversationBulkResponse": {
+        "description": "Response object for returning count and support interaction insights for time frame",
+        "type": "object",
+        "properties": {
+          "meta": {
+            "description": "data about returned results",
+            "type": "object",
+            "properties": {
+              "count": {
+                "description": "count of conversation insights records returned",
+                "type": "integer",
+                "format": "int64"
+              },
+              "nextToken": {
+                "description": "token to be used for the next batch call (if not present, there are no more results)",
+                "type": "string"
+              }
+            }
+          },
+          "conversations": {
+            "description": "list of conversation insights records",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConversationResponse"
+            }
+          }
+        }
+      },
+      "ConversationResponse": {
+        "description": "Provides insights for a single conversation",
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "description": "unique customer dataset specific id (caseId/transcriptId)",
+            "type": "string"
+          },
+          "summary": {
+            "description": "summary for the entire conversation",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "Returns the timestamp of the last message in the conversation",
+            "type": "string",
+            "format": "date-time"
+          },
+          "processedTimestamp": {
+            "description": "Returns processing timestamp by Cuein for the conversation",
+            "type": "string",
+            "format": "date-time"
+          },
+          "additionalId": {
+            "description": "list of additional identifiers for the conversation",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalIdKeyValue"
+            }
+          },
+          "intents": {
+            "description": "list of contact reasons/user intents for which user is seeking support/assistance",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightResponse"
+            }
+          },
+          "rootCauses": {
+            "description": "list of root causes for the contact reasons/user intents",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightResponse"
+            }
+          },
+          "resolutions": {
+            "description": "list of resolutions provided by bot or agent for providing support/assistance",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightResponse"
+            }
+          },
+          "policies": {
+            "description": "list of policies associated with the session",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightResponse"
+            }
+          },
+          "metrics": {
+            "description": "AI driven annotations/metrics for the conversation session",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricResponse"
+            }
+          },
+          "botMetrics": {
+            "description": "AI driven annotations/metrics for the chatbot section of the conversation session, if any",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricResponse"
+            }
+          },
+          "agentMetrics": {
+            "description": "AI driven annotations/metrics for the agent section of the conversation session, if any",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricResponse"
+            }
+          },
+          "sourceMetadata": {
+            "description": "Selected key-value tags from original source metadata",
+            "$ref": "#/components/schemas/SourceMetadata"
+          }
+        }
+      },
+      "InsightResponse": {
+        "description": "Provides generated summary, clustered category and label for intents/root causes/resolutions",
+        "type": "object",
+        "properties": {
+          "summary": {
+            "description": "short  description for the specific insight",
+            "type": "string"
+          },
+          "utteranceIndex": {
+            "description": "index of the utterance in the conversation/case (starting from 1)",
+            "type": "integer",
+            "format": "int64"
+          },
+          "messageId": {
+            "description": "optional reference to the message id in the conversation (if provided)",
+            "type": "string"
+          },
+          "categories": {
+            "description": "one or more cluster categories the insight belongs to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryDetails"
+            }
+          },
+          "generatedLabel": {
+            "description": "a short label for the insight (for outlier insights not part of existing clusters)",
+            "type": "string"
+          }
+        }
+      },
+      "CategoryDetails": {
+        "description": "Clustered category name and score",
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "description": "Cluster label the insight is part of",
+            "type": "string"
+          },
+          "score": {
+            "description": "Cluster score between 0 & 1 for insight association with specific cluster label",
+            "type": "number"
+          }
+        }
+      },
+      "LastProcessedResponse": {
+        "description": "Provide info on last processed record by ETL/analysis process",
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "description": "Most recent processing timestamp by Cuein",
+            "type": "string",
+            "format": "date-time"
+          },
+          "latestMessageTimestamp": {
+            "description": "Latest message timestamp of processed conversations",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MetricResponse": {
+        "description": "AI driven annotations/score for conversations",
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "Name for a specific annotation/metric",
+            "type": "string",
+            "enum": [
+              "deflection",
+              "inferredCSAT",
+              "effortScore",
+              "resolved",
+              "abandoned",
+              "frustration",
+              "confusion",
+              "nextSteps",
+              "transferEscalation",
+              "empathy"
+            ]
+          },
+          "value": {
+            "description": "AI generated  values for various metric values",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          }
+        }
+      },
+      "AdditionalIdKeyValue": {
+        "description": "List of additional id key and values to identify conversations",
+        "type": "object",
+        "properties": {
+          "idKey": {
+            "description": "Name of a specific id/key",
+            "type": "string",
+            "enum": [
+              "contactId"
+            ]
+          },
+          "value": {
+            "description": "Value for the id key",
+            "type": "string"
+          }
+        }
+      },
+      "SourceMetadata": {
+        "description": "Key-values tags from the original source metadata. The keys vary by dataset.",
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}

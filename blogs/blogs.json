@@ -1,0 +1,11 @@
+{
+  "repo": "cuein",
+  "feeds": [
+    {
+      "source": "https://cuein-api.readme.io/docs/getting-started",
+      "error": "HTTPError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-20T13:31:34Z"
+}

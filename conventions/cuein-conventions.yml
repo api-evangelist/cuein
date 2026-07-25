@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+authentication:
+  style: api-key
+  header: x-api-key
+  scheme: ApiKeyAuth
+  ref: authentication/cuein-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  evidence: servers use https://api.cuein.ai/insights/v1 and https://api.cuein.ai/answers/v1
+pagination:
+  style: cursor
+  request_params:
+    - nextToken   # token for next batch lookup (empty returns first page)
+    - limit       # required; default system limits exist
+    - timeframeFrom
+    - timeframeTo
+  response_fields:
+    - meta        # ConversationBulkResponse.meta carries paging metadata
+  applies_to:
+    - openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented in the OpenAPI.
+request_tracing:
+  supported: false
+  note: No request-id / correlation header documented.
+error_envelope:
+  style: http-status
+  problem_json: false
+  ref: errors/cuein-problem-types.yml
+rate_limit_signaling:
+  documented: false
+metadata:
+  additional_ids: ConversationResponse.additionalId (AdditionalIdKeyValue[] idKey/value pairs)
+  source_metadata: ConversationResponse.sourceMetadata

@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+skills:
+  - file: cuein-conversation-insights.md
+    name: Retrieve customer conversation insights
+    api: openapi/cuein-insights-openapi.json
+    operations:
+      - Retrieve the latest processed conversation timestamp
+      - Retrieve insights for multiple conversations
+      - Retrieve insights for a conversation
+  - file: cuein-knowledge-answer.md
+    name: Answer a question from the knowledge base
+    api: openapi/cuein-answers-openapi.json
+    operations:
+      - getAnswer

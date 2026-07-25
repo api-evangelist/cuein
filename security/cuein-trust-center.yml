@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: searched
+probe: false
+source: https://cuein.ai/
+url: https://app.vanta.com/cueinai/trust/7pzlr5lnec2vu3lghvusmd
+platform: Vanta
+certifications: []
+note: >-
+  Cuein publishes a Vanta-hosted trust center (linked from the homepage as
+  "Security"). The specific named certifications are rendered client-side and
+  were not verifiable in this pass, so none are asserted here. No Compliance
+  pointer is emitted without a verified certification.
+evidence:
+  - source: https://cuein.ai/
+    kind: homepage-link
+    detail: Security link -> Vanta trust center

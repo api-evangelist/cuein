@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Cuein Insights API
+  version: 1.0.0
+extends: openapi/cuein-insights-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-provider: cuein
+      x-apievangelist-notes: Captured verbatim from cuein-api.readme.io; conventions and error catalog derived.
+  - target: $.info
+    update:
+      x-authentication: authentication/cuein-authentication.yml
+      x-conventions: conventions/cuein-conventions.yml
+      x-error-catalog: errors/cuein-problem-types.yml

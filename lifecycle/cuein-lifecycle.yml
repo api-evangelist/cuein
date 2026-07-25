@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://cuein.ai/, https://cuein-api.readme.io/
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://cuein-api.readme.io/reference
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/sunset policy found.
+sla:
+  url: null
+status_page: null
+terms_of_service: https://cuein.ai/terms
+trust_center: https://app.vanta.com/cueinai/trust/7pzlr5lnec2vu3lghvusmd
+ownership:
+  note: >-
+    Cuein was acquired by ServiceNow (announced Q1 2025). The standalone
+    developer hub (cuein-api.readme.io / api.cuein.ai) remains live as of this pass.
+deprecated_operations: []
