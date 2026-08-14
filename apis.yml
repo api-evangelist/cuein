@@ -31,7 +31,7 @@ accessModel:
 image: https://files.readme.io/083b62d-Logo.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-14'
 tags:
 - Company
 - Customer Experience
@@ -46,7 +46,7 @@ apis:
   name: Cuein answers API
   description: APIs for getting answers
   humanURL: https://cuein-api.readme.io/reference
-  baseURL: https://api.cuein.ai/insights/v1
+  baseURL: https://api.cuein.ai/answers/v1
   tags:
   - answers
   properties:
@@ -94,26 +94,44 @@ common:
   url: lifecycle/cuein-lifecycle.yml
 - type: TrustCenter
   url: security/cuein-trust-center.yml
+- type: Overlay
+  url: overlays/cuein-insights-overlay.yaml
+- type: WellKnown
+  url: well-known/cuein-well-known.yml
+- type: APICatalog
+  url: https://developer.cuein.ai/.well-known/api-catalog
+- type: Packages
+  url: packages/cuein-packages.yml
+- type: Plans
+  url: plans/cuein-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/cuein-rate-limits.yml
 - type: DeveloperPortal
   url: https://developer.cuein.ai/
 - type: Documentation
-  url: https://cuein-api.readme.io/docs/getting-started
+  url: https://cuein-api.readme.io/reference
 - type: APIReference
   url: https://cuein-api.readme.io/reference
-- type: GettingStarted
-  url: https://cuein-api.readme.io/docs/getting-started
 - type: Blog
   url: https://cuein.ai/blog
+- type: BlogRSS
+  url: https://cuein.ai/blog/rss.xml
+- type: GitHubOrganization
+  url: https://github.com/Cuein
 - type: Support
   url: mailto:support@cuein.ai
-- type: SignUp
-  url: https://app.cuein.ai
 - type: TermsOfService
   url: https://cuein.ai/terms
 - type: PrivacyPolicy
   url: https://cuein.ai/privacy
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 4
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Found a real RFC 9727 api-catalog on the developer hub and saved it verbatim;
+    verified both published OpenAPIs against their live ReadMe source (byte-identical);
+    recorded honest zeros for packages, plans and rate limits; and established by DNS
+    probe that the documented API host api.cuein.ai no longer resolves. Removed the
+    GettingStarted and SignUp pointers, whose targets now 404 / fail to resolve.
