@@ -1,0 +1,25 @@
+generated: '2026-08-14'
+method: searched
+source: https://cuein.ai/ (nav + footer), https://cuein.ai/sitemap.xml, https://cuein.ai/pricing
+plan_count: 0
+plans: []
+model: contact-sales
+note: >-
+  Cuein publishes no pricing or plans of any kind. There is no /pricing page
+  (HTTP 404) and no pricing URL appears anywhere in the site's own sitemap.xml;
+  the site nav offers only "Request Demo" (https://cuein.ai/demo, HTTP 200) and
+  "Sign In". The API developer hub documents authentication with an x-api-key
+  issued by Cuein but never states a price, tier, quota, or free-tier allowance.
+  This is a genuine zero, not an unfetched page.
+evidence:
+- url: https://cuein.ai/pricing
+  status: 404
+- url: https://cuein.ai/sitemap.xml
+  status: 200
+  detail: 26 URLs, none of them a pricing or plans page
+- url: https://cuein.ai/demo
+  status: 200
+  detail: the only commercial entry point published — a demo request form
+- url: https://cuein-api.readme.io/llms.txt
+  status: 200
+  detail: documentation index lists one guide and five reference pages, no pricing

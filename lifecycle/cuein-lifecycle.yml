@@ -1,21 +1,95 @@
-generated: '2026-07-18'
-method: searched
-source: https://cuein.ai/, https://cuein-api.readme.io/
+generated: '2026-08-14'
+method: probed
+source: >-
+  https://cuein.ai/, https://cuein-api.readme.io/, https://developer.cuein.ai/,
+  DNS/TLS probes of api.cuein.ai, app.cuein.ai, status.cuein.ai
 versioning:
   scheme: uri-path
   current: v1
   docs: https://cuein-api.readme.io/reference
+  evidence: servers[] are https://api.cuein.ai/insights/v1 and https://api.cuein.ai/answers/v1
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No published deprecation/sunset policy found.
+  note: No published deprecation or sunset policy found.
 sla:
   url: null
 status_page: null
+status_page_note: >-
+  No status page is published. status.cuein.ai resolves only to the registrar's
+  parking addresses and serves nothing over HTTPS; no statuspage.io, Instatus or
+  Better Stack property is linked from the site, the docs, or the API reference.
+changelog: null
+changelog_note: >-
+  No changelog or release-notes page exists. Both /changelog paths on the developer
+  hub return 404, and the hub's llms.txt index lists no such page.
 terms_of_service: https://cuein.ai/terms
 trust_center: https://app.vanta.com/cueinai/trust/7pzlr5lnec2vu3lghvusmd
-ownership:
-  note: >-
-    Cuein was acquired by ServiceNow (announced Q1 2025). The standalone
-    developer hub (cuein-api.readme.io / api.cuein.ai) remains live as of this pass.
 deprecated_operations: []
+availability:
+  summary: >-
+    The documented API host no longer exists. Every OpenAPI Cuein publishes declares
+    servers[] on api.cuein.ai, and that name is a dangling CNAME: it points at
+    d-q6kmpx96lj.execute-api.us-west-2.amazonaws.com, an AWS API Gateway custom-domain
+    target that has itself been deleted, so the record resolves to nothing and no
+    request to the API can be made. The application host app.cuein.ai is dangling the
+    same way, pointing at a CloudFront distribution (d1l3ciwqb9klkm.cloudfront.net)
+    that no longer resolves. What remains live is the marketing site on HubSpot and
+    the ReadMe-hosted developer hub, which still serves both OpenAPI definitions, its
+    llms.txt, and an RFC 9727 API catalog describing an API that cannot be called.
+  hosts:
+  - host: api.cuein.ai
+    role: API base host in every OpenAPI servers[]
+    dns: CNAME -> d-q6kmpx96lj.execute-api.us-west-2.amazonaws.com
+    resolves: false
+    reachable: false
+    error: 'curl: (6) Could not resolve host: api.cuein.ai'
+    checked: '2026-08-14'
+  - host: app.cuein.ai
+    role: application / "Sign In" target linked from cuein.ai
+    dns: CNAME -> d1l3ciwqb9klkm.cloudfront.net
+    resolves: false
+    reachable: false
+    error: 'curl: (6) Could not resolve host: app.cuein.ai'
+    checked: '2026-08-14'
+  - host: status.cuein.ai
+    dns: A 199.60.103.56 / 199.60.103.156 / 192.64.119.254 (registrar parking)
+    resolves: true
+    reachable: false
+    checked: '2026-08-14'
+  - host: cuein.ai
+    role: marketing site (HubSpot CMS)
+    resolves: true
+    reachable: true
+    http_status: 200
+    checked: '2026-08-14'
+  - host: cuein-api.readme.io
+    role: developer hub (ReadMe)
+    resolves: true
+    reachable: true
+    http_status: 200
+    checked: '2026-08-14'
+  - host: developer.cuein.ai
+    role: developer hub vanity domain (ReadMe)
+    resolves: true
+    reachable: true
+    http_status: 200
+    checked: '2026-08-14'
+  broken_documentation:
+  - url: https://cuein-api.readme.io/docs/getting-started
+    status: 404
+    note: >-
+      The hub's own llms.txt still advertises this page as the sole guide, and it is
+      what apis.yml previously carried as Documentation and GettingStarted. It is gone.
+  - url: https://cuein-api.readme.io/docs
+    status: 404
+ownership:
+  acquired_by: ServiceNow
+  announced: 2025-01
+  announcement: https://www.servicenow.com/company/media/press-room/servicenow-to-acquire-cuein.html
+  note: >-
+    The cuein.ai homepage carries a banner reading "ServiceNow accelerates agentic AI
+    roadmap with acquisition of AI native conversation data analysis platform Cuein"
+    linking to the ServiceNow press room. The standalone product surface has since
+    been wound down: the API and application hosts no longer resolve, while the
+    marketing site and the ReadMe developer hub remain published.

@@ -1,0 +1,36 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://cuein-api.readme.io/llms.txt, https://cuein-api.readme.io/reference,
+  https://cuein-api.readme.io/reference/getanswer.md,
+  openapi/_original/cuein-insights-openapi.json, openapi/_original/cuein-answers-openapi.json
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+note: >-
+  Cuein documents no rate limits. The developer hub's own machine-readable index
+  (llms.txt) lists exactly one guide page and five API reference pages, and none of
+  them is a limits, quotas, or throttling page; the reference HTML contains no
+  occurrence of "rate limit"; and neither published OpenAPI declares a 429 response,
+  a Retry-After header, or any X-RateLimit-*/RateLimit-* response header on any of
+  the five operations. The only volume control expressed anywhere in the contract is
+  a per-request `limit` query parameter on GET /conversations, described as
+  "Limit of results to return (default system limits exist)" — an unquantified
+  reference to limits that are never published. Nothing could be observed live
+  either: the API host api.cuein.ai does not resolve (see lifecycle/), so no runtime
+  header could be probed. An honest zero.
+evidence:
+- url: https://cuein-api.readme.io/llms.txt
+  status: 200
+  detail: documentation index — no rate-limit page listed
+- url: https://cuein-api.readme.io/reference
+  status: 200
+  detail: no "rate limit" string in the served document
+- url: https://cuein-api.readme.io/reference/getanswer.md
+  status: 200
+  detail: full OpenAPI for the Answers API inlined; declares only 200 and 400
+undocumented_signal:
+  parameter: limit
+  operation: openapi/_original/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+  provider_text: Limit of results to return (default system limits exist)

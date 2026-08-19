@@ -1,16 +1,24 @@
-generated: '2026-07-18'
+generated: '2026-08-14'
 method: searched
-probe: false
+probe: true
 source: https://cuein.ai/
 url: https://app.vanta.com/cueinai/trust/7pzlr5lnec2vu3lghvusmd
 platform: Vanta
 certifications: []
 note: >-
-  Cuein publishes a Vanta-hosted trust center (linked from the homepage as
-  "Security"). The specific named certifications are rendered client-side and
-  were not verifiable in this pass, so none are asserted here. No Compliance
-  pointer is emitted without a verified certification.
+  Cuein publishes a Vanta-hosted trust center, linked from the cuein.ai footer. The
+  page returns HTTP 200 but is a client-side application: the served HTML contains no
+  certification names, and a keyword scan of the response body for SOC 2, ISO 27001,
+  ISO 27017, ISO 27018, PCI DSS, HIPAA, FedRAMP, GDPR and CSA STAR returned zero
+  matches. The certification list exists only after script execution, so nothing is
+  asserted here and no Compliance pointer is emitted — the trust center's presence is
+  recorded, its contents are not claimed.
 evidence:
   - source: https://cuein.ai/
     kind: homepage-link
-    detail: Security link -> Vanta trust center
+    detail: footer "Security" link -> Vanta trust center
+  - source: https://app.vanta.com/cueinai/trust/7pzlr5lnec2vu3lghvusmd
+    kind: probe
+    http_status: 200
+    detail: JS-rendered; no certification string present in the served document
+    checked: '2026-08-14'

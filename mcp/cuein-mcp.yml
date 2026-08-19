@@ -1,26 +1,57 @@
-generated: '2026-07-18'
+generated: '2026-08-14'
 method: derived
 status: candidate
 source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
 note: >-
-  No official hosted/remote Cuein MCP server was found. Tool list derived
-  one-per-operation from the OpenAPI as a candidate; operationIds are verbatim.
+  No official hosted or local Cuein MCP server exists. The public MCP registry returns
+  zero servers for "cuein"; no npm or PyPI package is published under the name; the
+  developer hub's llms.txt index lists no MCP page; and mcp.cuein.ai resolves only to
+  registrar parking and serves nothing over HTTPS. The tool list below is derived
+  one-per-operation from the published OpenAPI as a candidate only; operationIds are
+  verbatim. Note that these candidate tools would target api.cuein.ai, which no longer
+  resolves — see lifecycle/cuein-lifecycle.yml.
+searched:
+- source: https://registry.modelcontextprotocol.io/v0/servers?search=cuein
+  status: 200
+  result: 0 servers
+- source: https://registry.npmjs.org/-/v1/search?text=cuein&size=20
+  status: 200
+  result: no Cuein-published package
+- source: https://cuein-api.readme.io/llms.txt
+  status: 200
+  result: no MCP page in the documentation index
+- source: https://mcp.cuein.ai/
+  status: null
+  result: no HTTPS service (registrar parking addresses)
 server:
   name: cuein
   transport: http
 tools:
-  - name: retrieve_conversation_insights
-    description: Retrieve paginated conversation insights records based on date range.
-    source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
-  - name: schedule_conversation_text_deletion
-    description: Schedule deletion of conversation utterance text from insight records by source ids.
-    source_operation: openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple conversations
-  - name: retrieve_last_processed_timestamp
-    description: Retrieve the latest processed conversation timestamp.
-    source_operation: openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
-  - name: retrieve_conversation_insight
-    description: Retrieve a single conversation insights record by id.
-    source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
-  - name: get_answer
-    description: Answer a question based on knowledge articles and other documents.
-    source_operation: openapi/cuein-answers-openapi.json#getAnswer
+- name: retrieve_conversation_insights
+  description: Retrieve paginated conversation insights records based on date range.
+  source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for multiple conversations
+- name: schedule_conversation_text_deletion
+  description: Schedule deletion of conversation utterance text from insight records by source ids.
+  source_operation: openapi/cuein-insights-openapi.json#Schedule deletion of conversation text for multiple
+    conversations
+- name: retrieve_last_processed_timestamp
+  description: Retrieve the latest processed conversation timestamp.
+  source_operation: openapi/cuein-insights-openapi.json#Retrieve the latest processed conversation timestamp
+- name: retrieve_conversation_insight
+  description: Retrieve a single conversation insights record by id.
+  source_operation: openapi/cuein-insights-openapi.json#Retrieve insights for a conversation
+- name: get_answer
+  description: Answer a question based on knowledge articles and other documents.
+  source_operation: openapi/cuein-answers-openapi.json#getAnswer
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+  tools: 5
+  checked: '2026-08-14'
+  source: >-
+    MCP registry search, npm/PyPI search, developer-hub llms.txt, and a direct probe of
+    mcp.cuein.ai — nobody ships a Cuein MCP server, remote or stdio

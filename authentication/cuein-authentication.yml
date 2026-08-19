@@ -1,6 +1,6 @@
-generated: '2026-07-18'
+generated: '2026-08-14'
 method: derived
-source: openapi/cuein-answers-openapi.json, openapi/cuein-insights-openapi.json
+source: openapi/cuein-answers-api-openapi.yml, openapi/cuein-conversations-api-openapi.yml
 summary:
   types:
   - apiKey
@@ -12,5 +12,5 @@ schemes:
   in: header
   parameter: x-api-key
   sources:
-  - openapi/cuein-answers-openapi.json
-  - openapi/cuein-insights-openapi.json
+  - openapi/cuein-answers-api-openapi.yml
+  - openapi/cuein-conversations-api-openapi.yml

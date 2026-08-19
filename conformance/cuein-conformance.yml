@@ -1,25 +1,50 @@
-generated: '2026-07-18'
+generated: '2026-08-14'
 method: derived
-source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
+source: >-
+  openapi/_original/cuein-insights-openapi.json, openapi/_original/cuein-answers-openapi.json,
+  well-known/cuein-api-catalog.json
 standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: both published specs declare openapi 3.0.1
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: >-
+      https://developer.cuein.ai/.well-known/api-catalog returns HTTP 200 with a
+      valid linkset naming both OpenAPI definitions as service-desc links
+      (application/vnd.oai.openapi+json); saved verbatim to
+      well-known/cuein-api-catalog.json
+  - id: api-key-auth
+    conforms: true
+    evidence: ApiKeyAuth (x-api-key header) declared and applied on all five operations
+  - id: cursor-pagination
+    conforms: true
+    evidence: nextToken/limit cursor pagination on GET /conversations
+  - id: llms-txt
+    conforms: true
+    evidence: https://cuein-api.readme.io/llms.txt returns HTTP 200 with a real index
   - id: oauth2
     conforms: false
     evidence: no oauth2 securityScheme declared
   - id: oidc
     conforms: false
-  - id: api-key-auth
-    conforms: true
-    evidence: ApiKeyAuth (x-api-key header) on all operations
   - id: rfc9457-problem-details
     conforms: false
     evidence: error responses use plain HTTP status, no application/problem+json
-  - id: cursor-pagination
-    conforms: true
-    evidence: nextToken/limit cursor pagination on GET /conversations
-  - id: openapi-3.0
-    conforms: true
-    evidence: both specs declare openapi 3.0.1
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: no Sunset/Deprecation header or deprecation policy published
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on every Cuein host
   - id: json-api
     conforms: false
   - id: fhir
     conforms: false
+compliance_program:
+  published: false
+  note: >-
+    A Vanta-hosted trust center is linked from the homepage and returns HTTP 200, but
+    its certification list is rendered client-side and no named certification could be
+    verified from the served document. No Compliance pointer is emitted. See
+    security/cuein-trust-center.yml.

@@ -33,6 +33,17 @@ error_envelope:
   ref: errors/cuein-problem-types.yml
 rate_limit_signaling:
   documented: false
+  ref: rate-limits/cuein-rate-limits.yml
+  note: >-
+    No 429 response, Retry-After, or X-RateLimit-*/RateLimit-* header appears in either
+    published spec or anywhere in the developer hub. The only volume control expressed
+    is a per-request `limit` query parameter whose description says "default system
+    limits exist" without publishing them.
+discovery:
+  api_catalog: https://developer.cuein.ai/.well-known/api-catalog
+  api_catalog_spec: RFC 9727
+  llms_txt: https://cuein-api.readme.io/llms.txt
+  ref: well-known/cuein-well-known.yml
 metadata:
   additional_ids: ConversationResponse.additionalId (AdditionalIdKeyValue[] idKey/value pairs)
   source_metadata: ConversationResponse.sourceMetadata

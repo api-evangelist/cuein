@@ -1,0 +1,1051 @@
+{
+  "item": [
+    {
+      "id": "85e44825-ca90-4033-a37f-793cbe366b06",
+      "name": "conversations",
+      "description": {
+        "content": "APIs for retrieving customer-support interaction insights",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "efeaccd2-2113-48a1-ac66-3b9367c1b630",
+          "name": "Retrieve paginated conversation insights records based on date range as input",
+          "request": {
+            "name": "Retrieve paginated conversation insights records based on date range as input",
+            "description": {},
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeframeFrom",
+                  "value": "<dateTime>",
+                  "description": "(Required) Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeframeTo",
+                  "value": "<dateTime>",
+                  "description": "(Required) Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "Token to use for next batch lookup (empty returns the first batch of records)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "(Required) Limit of results to return (default system limits exist)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bef08447-700b-4db0-864c-4518b6e3da46",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeframeFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeframeTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 447,\n    \"nextToken\": \"string\"\n  },\n  \"conversations\": [\n    {\n      \"sourceId\": \"string\",\n      \"summary\": \"string\",\n      \"timestamp\": \"2002-03-25T11:13:44.367Z\",\n      \"processedTimestamp\": \"1971-08-19T20:25:42.703Z\",\n      \"additionalId\": [\n        {\n          \"idKey\": \"contactId\",\n          \"value\": \"string\"\n        },\n        {\n          \"idKey\": \"contactId\",\n          \"value\": \"string\"\n        }\n      ],\n      \"intents\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 1430,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 308,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"rootCauses\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 3795,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 7774,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"resolutions\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 3685,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 7128,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"policies\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 1768,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 8047,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"metrics\": [\n        {\n          \"label\": \"resolved\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"transferEscalation\",\n          \"value\": \"string\"\n        }\n      ],\n      \"botMetrics\": [\n        {\n          \"label\": \"deflection\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"deflection\",\n          \"value\": \"string\"\n        }\n      ],\n      \"agentMetrics\": [\n        {\n          \"label\": \"abandoned\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"empathy\",\n          \"value\": \"string\"\n        }\n      ],\n      \"sourceMetadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"sourceId\": \"string\",\n      \"summary\": \"string\",\n      \"timestamp\": \"1959-02-28T00:19:37.110Z\",\n      \"processedTimestamp\": \"1949-05-14T04:21:42.443Z\",\n      \"additionalId\": [\n        {\n          \"idKey\": \"contactId\",\n          \"value\": \"string\"\n        },\n        {\n          \"idKey\": \"contactId\",\n          \"value\": \"string\"\n        }\n      ],\n      \"intents\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 8466,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 9117,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"rootCauses\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 294,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 1475,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"resolutions\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 3452,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 2438,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"policies\": [\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 1130,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        },\n        {\n          \"summary\": \"string\",\n          \"utteranceIndex\": 8451,\n          \"messageId\": \"string\",\n          \"categories\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"generatedLabel\": \"string\"\n        }\n      ],\n      \"metrics\": [\n        {\n          \"label\": \"inferredCSAT\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"confusion\",\n          \"value\": \"string\"\n        }\n      ],\n      \"botMetrics\": [\n        {\n          \"label\": \"transferEscalation\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"abandoned\",\n          \"value\": \"string\"\n        }\n      ],\n      \"agentMetrics\": [\n        {\n          \"label\": \"effortScore\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"transferEscalation\",\n          \"value\": \"string\"\n        }\n      ],\n      \"sourceMetadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e06237c4-359b-4591-bcc7-b0db8c6bcaba",
+              "name": "Invalid Request Payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeframeFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeframeTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ece9ee11-da69-4a4c-8600-ec5389d1db1f",
+              "name": "Authentication Failure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeframeFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeframeTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19d95616-f6be-4ec0-affb-283924c155d6",
+              "name": "Internal Cuein Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeframeFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeframeTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "964d2a32-93c3-4e82-8733-6743b98c78ca",
+          "name": "Schedule deletion of conversation text (utterance text) from insight records based on source ids",
+          "request": {
+            "name": "Schedule deletion of conversation text (utterance text) from insight records based on source ids",
+            "description": {},
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceIds",
+                  "value": "<string>",
+                  "description": "list of unique customer dataset specific id (caseId/transcriptId)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceIds",
+                  "value": "<string>",
+                  "description": "list of unique customer dataset specific id (caseId/transcriptId)"
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c3414d2-d7d6-4ccc-805f-d00040588412",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfdf2c5a-4d69-41a1-b328-1bd519bc6e29",
+              "name": "Invalid Request Payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21ae746d-c5d4-473d-b1d3-8f7e45e9dedc",
+              "name": "Authentication Failure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "692187dd-f1db-4019-9213-99706ec0dee6",
+              "name": "Internal Cuein Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4d64b69-885f-44b9-976e-ba61778fb9a8",
+          "name": "Retrieves the latest updated timestamp of conversation that has been processed and ready for access.",
+          "request": {
+            "name": "Retrieves the latest updated timestamp of conversation that has been processed and ready for access.",
+            "description": {},
+            "url": {
+              "path": [
+                "conversations",
+                "meta",
+                "lastProcessed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19b08c1e-323a-4646-8aac-3f12b2ff54c0",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "meta",
+                    "lastProcessed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"1988-07-29T10:04:00.336Z\",\n  \"latestMessageTimestamp\": \"1966-06-17T19:49:53.774Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea9e2efb-ca24-4cf3-bde2-d60d7fa49a86",
+              "name": "Invalid Request Payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "meta",
+                    "lastProcessed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "737fff3a-39fc-45d2-8656-9251dea07f59",
+              "name": "Authentication Failure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "meta",
+                    "lastProcessed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e6e85fc-3859-4a10-a721-3e99710f8574",
+              "name": "Internal Cuein Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "meta",
+                    "lastProcessed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f72b1caa-645a-4f09-ba4a-d025dd57b5d5",
+          "name": "Retrieve single conversation insights record by id",
+          "request": {
+            "name": "Retrieve single conversation insights record by id",
+            "description": {},
+            "url": {
+              "path": [
+                "conversations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) unique customer dataset specific id (caseId/transcriptId)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b83aa010-c956-4350-93d9-9518a8fb8454",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) unique customer dataset specific id (caseId/transcriptId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sourceId\": \"string\",\n    \"summary\": \"string\",\n    \"timestamp\": \"2022-03-29T03:11:17.124Z\",\n    \"processedTimestamp\": \"1980-04-06T19:04:35.529Z\",\n    \"additionalId\": [\n      {\n        \"idKey\": \"contactId\",\n        \"value\": \"string\"\n      },\n      {\n        \"idKey\": \"contactId\",\n        \"value\": \"string\"\n      }\n    ],\n    \"intents\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 5008,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 7389.4146438729495\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 4698.062984917576\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 9936,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 62.3504688285903\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 7663.3346419238105\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"rootCauses\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 6640,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 4067.7112062933143\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 8789.2721519153\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 9020,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 1825.1956093721399\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 9601.381268954932\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"resolutions\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 2326,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 4123.0860401077625\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 2556.322950151194\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 7754,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 6387.895295548705\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 4509.563394727828\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"policies\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 2478,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 201.25600528046684\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 8931.301729807823\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 4842,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 7643.962503174359\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 7709.977225904222\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"metrics\": [\n      {\n        \"label\": \"nextSteps\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"abandoned\",\n        \"value\": \"string\"\n      }\n    ],\n    \"botMetrics\": [\n      {\n        \"label\": \"transferEscalation\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"transferEscalation\",\n        \"value\": \"string\"\n      }\n    ],\n    \"agentMetrics\": [\n      {\n        \"label\": \"abandoned\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"resolved\",\n        \"value\": \"string\"\n      }\n    ],\n    \"sourceMetadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"sourceId\": \"string\",\n    \"summary\": \"string\",\n    \"timestamp\": \"1958-06-01T05:47:44.363Z\",\n    \"processedTimestamp\": \"1984-08-05T14:04:39.173Z\",\n    \"additionalId\": [\n      {\n        \"idKey\": \"contactId\",\n        \"value\": \"string\"\n      },\n      {\n        \"idKey\": \"contactId\",\n        \"value\": \"string\"\n      }\n    ],\n    \"intents\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 9420,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 3827.9573129466426\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 3427.805560458701\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 9248,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 5440.958602497148\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 3883.26147397864\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"rootCauses\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 6073,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 9402.41041600278\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 3544.0015379066504\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 2018,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 5380.239461971155\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 275.82500371241326\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"resolutions\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 7646,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 4577.585410681609\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 1946.4520022317533\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 773,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 4244.3424059988865\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 2886.016473070454\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"policies\": [\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 5663,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 6497.801293544098\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 1288.3239978812555\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      },\n      {\n        \"summary\": \"string\",\n        \"utteranceIndex\": 794,\n        \"messageId\": \"string\",\n        \"categories\": [\n          {\n            \"label\": \"string\",\n            \"score\": 6726.554318190428\n          },\n          {\n            \"label\": \"string\",\n            \"score\": 4707.030264964445\n          }\n        ],\n        \"generatedLabel\": \"string\"\n      }\n    ],\n    \"metrics\": [\n      {\n        \"label\": \"resolved\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"resolved\",\n        \"value\": \"string\"\n      }\n    ],\n    \"botMetrics\": [\n      {\n        \"label\": \"deflection\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"nextSteps\",\n        \"value\": \"string\"\n      }\n    ],\n    \"agentMetrics\": [\n      {\n        \"label\": \"transferEscalation\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"effortScore\",\n        \"value\": \"string\"\n      }\n    ],\n    \"sourceMetadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fbdf197-a7d4-447b-ac3a-43eac824f40e",
+              "name": "Invalid Request Payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) unique customer dataset specific id (caseId/transcriptId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad741cbd-ec3a-4bc0-b0b4-cfe02c4e7769",
+              "name": "Authentication Failure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) unique customer dataset specific id (caseId/transcriptId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a666c952-ce43-47bc-b36d-40881b14fb80",
+              "name": "Internal Cuein Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) unique customer dataset specific id (caseId/transcriptId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cuein.ai/answers/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d5a950ff-7875-4532-85d3-8f2b1b0b52dc",
+    "name": "Cuein answers conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Cuein Answers Service.",
+      "type": "text/plain"
+    }
+  }
+}

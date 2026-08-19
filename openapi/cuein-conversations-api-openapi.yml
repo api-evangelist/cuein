@@ -1,14 +1,12 @@
 openapi: 3.0.1
 info:
-  title: Cuein answers conversations API
-  description: API for Cuein Answers Service.
-  termsOfService: http://swagger.io/terms/
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Cuein Insights API - conversations
+  description: This document outlines the APIs provided by Cuein Inc (Co-pilot for supporting
+    Customer Experience Teams).
+  termsOfService: https://cuein.ai/terms
   version: 1.0.0
 servers:
-- url: https://api.cuein.ai/answers/v1
+- url: https://api.cuein.ai/insights/v1
 tags:
 - name: conversations
   description: APIs for retrieving customer-support interaction insights

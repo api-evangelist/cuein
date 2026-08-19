@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuein answers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "answers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Answer question based on Knowledge Articles and other Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cuein.ai/answers/v1/answer",
+            "params": [
+              {
+                "name": "question",
+                "value": "",
+                "type": "query",
+                "description": "Question to be answered"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Customer making the request"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier for the tenant/client whose documents will be used for answering the question"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the chat session in which the question was asked"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of document to be used for search"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Key-Value pairs to be used as filters. All filters will be treated as AND. Ex. ?filter[filter_1]=val_1,val_2&filter[filter_2]=val_3,val_4."
+              },
+              {
+                "name": "numDocuments",
+                "value": "",
+                "type": "query",
+                "description": "Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)"
+              },
+              {
+                "name": "userType",
+                "value": "",
+                "type": "query",
+                "description": "Type of user making the request"
+              },
+              {
+                "name": "userName",
+                "value": "",
+                "type": "query",
+                "description": "Name of user making the request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Answer question based on Knowledge Articles and other Documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

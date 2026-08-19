@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "1c30dfd8-6c4f-41a1-a76b-0947facc7ee5",
+      "name": "answers",
+      "description": {
+        "content": "APIs for getting answers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fc320c0-0451-446f-9f30-2af6c10049eb",
+          "name": "Answer question based on Knowledge Articles and other Documents",
+          "request": {
+            "name": "Answer question based on Knowledge Articles and other Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "answer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "question",
+                  "value": "<string>",
+                  "description": "Question to be answered"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Customer making the request"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "Identifier for the tenant/client whose documents will be used for answering the question"
+                },
+                {
+                  "disabled": false,
+                  "key": "sessionId",
+                  "value": "<string>",
+                  "description": "Unique identifier for the chat session in which the question was asked"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentType",
+                  "value": "public",
+                  "description": "Type of document to be used for search"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "description": "Key-Value pairs to be used as filters. All filters will be treated as AND. Ex. ?filter[filter_1]=val_1,val_2&filter[filter_2]=val_3,val_4."
+                },
+                {
+                  "disabled": false,
+                  "key": "numDocuments",
+                  "value": "<number>",
+                  "description": "Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)"
+                },
+                {
+                  "disabled": false,
+                  "key": "userType",
+                  "value": "<string>",
+                  "description": "Type of user making the request"
+                },
+                {
+                  "disabled": false,
+                  "key": "userName",
+                  "value": "<string>",
+                  "description": "Name of user making the request"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71adfd7c-ba9a-4dd8-84af-80d7016b431c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "question",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sessionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "public"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "numDocuments",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "userType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"answer\": \"string\",\n  \"answered\": true,\n  \"referenceDocuments\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00dbfb57-bd4d-4e55-8c6b-5b4996857ad6",
+              "name": "Invalid Tenant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "question",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sessionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "public"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "numDocuments",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "userType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cuein.ai/answers/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ec2593e4-5762-4821-9d1e-4f3176d10986",
+    "name": "Cuein answers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Cuein Answers Service.",
+      "type": "text/plain"
+    }
+  }
+}

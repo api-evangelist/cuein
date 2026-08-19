@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuein answers conversations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve paginated conversation insights records based on date range as input",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cuein.ai/answers/v1/conversations",
+            "params": [
+              {
+                "name": "timeframeFrom",
+                "value": "",
+                "type": "query",
+                "description": "Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein"
+              },
+              {
+                "name": "timeframeTo",
+                "value": "",
+                "type": "query",
+                "description": "Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token to use for next batch lookup (empty returns the first batch of records)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of results to return (default system limits exist)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve paginated conversation insights records based on date range as input"
+        },
+        {
+          "info": {
+            "name": "Schedule deletion of conversation text (utterance text) from insight records based on source ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cuein.ai/answers/v1/conversations",
+            "params": [
+              {
+                "name": "sourceIds",
+                "value": "",
+                "type": "query",
+                "description": "list of unique customer dataset specific id (caseId/transcriptId)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Schedule deletion of conversation text (utterance text) from insight records based on source ids"
+        },
+        {
+          "info": {
+            "name": "Retrieves the latest updated timestamp of conversation that has been processed and ready for access.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cuein.ai/answers/v1/conversations/meta/lastProcessed",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the latest updated timestamp of conversation that has been processed and ready for access."
+        },
+        {
+          "info": {
+            "name": "Retrieve single conversation insights record by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cuein.ai/answers/v1/conversations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "unique customer dataset specific id (caseId/transcriptId)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve single conversation insights record by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

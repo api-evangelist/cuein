@@ -1,0 +1,40 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  npm registry search, PyPI JSON + simple index, RubyGems search, crates.io search,
+  github.com/Cuein org listing, and the Cuein developer hub (cuein-api.readme.io)
+package_count: 0
+packages: []
+official_sdk_count: 0
+note: >-
+  Cuein publishes no first-party client libraries. Every public registry was queried
+  and returned either no package or unrelated results; the company's GitHub
+  organization (github.com/Cuein) is public but contains zero public repositories;
+  and the ReadMe developer hub links no SDK or CLI downloads. The documented
+  integration path is a raw HTTPS call with an x-api-key header. No SDKs pointer is
+  emitted, because there is no SDK.
+searched:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=cuein&size=20
+  status: 200
+  result: 2 hits, both unrelated (webaudio-peaks, @waveform-playlist/webaudio-peaks)
+- registry: pypi
+  query: https://pypi.org/pypi/cuein/json
+  status: 404
+  result: no package named cuein
+- registry: pypi
+  query: https://pypi.org/simple/cuein/
+  status: 404
+  result: not in the simple index
+- registry: rubygems
+  query: https://rubygems.org/api/v1/search.json?query=cuein
+  status: 200
+  result: empty array
+- registry: crates.io
+  query: https://crates.io/api/v1/crates?q=cuein
+  status: 200
+  result: 0 crates
+- registry: github
+  query: https://api.github.com/orgs/Cuein/repos?per_page=100
+  status: 200
+  result: 0 public repositories
