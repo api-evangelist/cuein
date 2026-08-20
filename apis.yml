@@ -35,6 +35,15 @@ modified: '2026-08-14'
 tags:
 - Company
 - Customer Experience
+- Customer-Support
+- Conversation Intelligence
+- Generative AI
+- Insights
+- Knowledge Base
+- Contact Center
+tags_raw:
+- Company
+- Customer Experience
 - Customer Support
 - Conversation Intelligence
 - Generative AI
@@ -48,6 +57,8 @@ apis:
   humanURL: https://cuein-api.readme.io/reference
   baseURL: https://api.cuein.ai/answers/v1
   tags:
+  - Answers
+  tags_raw:
   - answers
   properties:
   - type: OpenAPI
@@ -58,6 +69,8 @@ apis:
   humanURL: https://cuein-api.readme.io/reference
   baseURL: https://api.cuein.ai/insights/v1
   tags:
+  - Conversations
+  tags_raw:
   - conversations
   properties:
   - type: OpenAPI
