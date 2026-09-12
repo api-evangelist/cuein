@@ -96,6 +96,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Website
+  url: https://cuein.ai/
 - type: CapabilityMap
   url: capabilities/cuein-capability-edges.yml
   name: Cuein Business Capability Map
