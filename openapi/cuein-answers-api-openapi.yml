@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cuein answers API
+  title: Cuein Answers API
   description: API for Cuein Answers Service.
   termsOfService: http://swagger.io/terms/
   license:
@@ -10,13 +10,13 @@ info:
 servers:
 - url: https://api.cuein.ai/answers/v1
 tags:
-- name: answers
+- name: Answers
   description: APIs for getting answers
 paths:
   /answer:
     get:
       tags:
-      - answers
+      - Answers
       summary: Answer question based on Knowledge Articles and other Documents
       operationId: getAnswer
       parameters:
@@ -42,13 +42,54 @@ paths:
       security:
       - ApiKeyAuth: []
 components:
+  schemas:
+    ReferenceDocument:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Document
+        id:
+          type: string
+          description: Document Id
+    AnswerResponse:
+      required:
+      - answer
+      - answered
+      type: object
+      properties:
+        answer:
+          type: string
+          description: Answer to the question
+        referenceDocuments:
+          type: array
+          description: Documents used in the Answer
+          items:
+            $ref: '#/components/schemas/ReferenceDocument'
+        answered:
+          type: boolean
+          description: Whether or not the question was answered
   parameters:
-    tenantId:
-      name: tenantId
+    customerId:
+      name: customerId
       in: query
-      description: Identifier for the tenant/client whose documents will be used for answering the question
+      description: Customer making the request
       schema:
         type: string
+    question:
+      name: question
+      in: query
+      description: Question to be answered
+      schema:
+        type: string
+    numDocuments:
+      name: numDocuments
+      in: query
+      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
+      schema:
+        type: number
     filter:
       name: filter
       in: query
@@ -61,39 +102,16 @@ components:
             type: string
       style: form
       explode: true
-    customerId:
-      name: customerId
+    tenantId:
+      name: tenantId
       in: query
-      description: Customer making the request
+      description: Identifier for the tenant/client whose documents will be used for answering the question
       schema:
         type: string
     sessionId:
       name: sessionId
       in: query
       description: Unique identifier for the chat session in which the question was asked
-      schema:
-        type: string
-    userType:
-      name: userType
-      in: query
-      description: Type of user making the request
-      schema:
-        type: string
-        enum:
-        - chatbot
-        - customer
-        - agent
-        - admin
-    numDocuments:
-      name: numDocuments
-      in: query
-      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
-      schema:
-        type: number
-    question:
-      name: question
-      in: query
-      description: Question to be answered
       schema:
         type: string
     userName:
@@ -113,35 +131,17 @@ components:
         - internal
         - all
         default: public
-  schemas:
-    AnswerResponse:
-      required:
-      - answer
-      - answered
-      type: object
-      properties:
-        answer:
-          type: string
-          description: Answer to the question
-        referenceDocuments:
-          type: array
-          description: Documents used in the Answer
-          items:
-            $ref: '#/components/schemas/ReferenceDocument'
-        answered:
-          type: boolean
-          description: Whether or not the question was answered
-    ReferenceDocument:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the Document
-        id:
-          type: string
-          description: Document Id
+    userType:
+      name: userType
+      in: query
+      description: Type of user making the request
+      schema:
+        type: string
+        enum:
+        - chatbot
+        - customer
+        - agent
+        - admin
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,20 +1,19 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cuein Insights API - conversations
-  description: This document outlines the APIs provided by Cuein Inc (Co-pilot for supporting
-    Customer Experience Teams).
+  title: Cuein Insights Conversations API
+  description: This document outlines the APIs provided by Cuein Inc (Co-pilot for supporting Customer Experience Teams).
   termsOfService: https://cuein.ai/terms
   version: 1.0.0
 servers:
 - url: https://api.cuein.ai/insights/v1
 tags:
-- name: conversations
+- name: Conversations
   description: APIs for retrieving customer-support interaction insights
 paths:
   /conversations:
     get:
       tags:
-      - conversations
+      - Conversations
       summary: Retrieve paginated conversation insights records based on date range as input
       operationId: Retrieve insights for multiple conversations
       parameters:
@@ -42,8 +41,8 @@ paths:
       - ApiKeyAuth: []
     delete:
       tags:
-      - conversations
-      summary: Schedule deletion of conversation text (utterance text) from insight records based on source ids
+      - Conversations
+      summary: Schedule deletion of conversation text (utterance text) from insight records…
       operationId: Schedule deletion of conversation text for multiple conversations
       parameters:
       - $ref: '#/components/parameters/sourceIds'
@@ -65,8 +64,8 @@ paths:
   /conversations/meta/lastProcessed:
     get:
       tags:
-      - conversations
-      summary: Retrieves the latest updated timestamp of conversation that has been processed and ready for access.
+      - Conversations
+      summary: Retrieves the latest updated timestamp of conversation that has been processed…
       operationId: Retrieve the latest processed conversation timestamp
       responses:
         '200':
@@ -89,7 +88,7 @@ paths:
   /conversations/{id}:
     get:
       tags:
-      - conversations
+      - Conversations
       summary: Retrieve single conversation insights record by id
       operationId: Retrieve insights for a conversation
       parameters:
@@ -116,55 +115,11 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
-    AdditionalIdKeyValue:
-      description: List of additional id key and values to identify conversations
+    SourceMetadata:
+      description: Key-values tags from the original source metadata. The keys vary by dataset.
       type: object
-      properties:
-        idKey:
-          description: Name of a specific id/key
-          type: string
-          enum:
-          - contactId
-        value:
-          description: Value for the id key
-          type: string
-    MetricResponse:
-      description: AI driven annotations/score for conversations
-      type: object
-      properties:
-        label:
-          description: Name for a specific annotation/metric
-          type: string
-          enum:
-          - deflection
-          - inferredCSAT
-          - effortScore
-          - resolved
-          - abandoned
-          - frustration
-          - confusion
-          - nextSteps
-          - transferEscalation
-          - empathy
-        value:
-          description: AI generated  values for various metric values
-          oneOf:
-          - type: string
-          - type: integer
-          - type: number
-          - type: boolean
-    LastProcessedResponse:
-      description: Provide info on last processed record by ETL/analysis process
-      type: object
-      properties:
-        timestamp:
-          description: Most recent processing timestamp by Cuein
-          type: string
-          format: date-time
-        latestMessageTimestamp:
-          description: Latest message timestamp of processed conversations
-          type: string
-          format: date-time
+      additionalProperties:
+        type: string
     ConversationResponse:
       description: Provides insights for a single conversation
       type: object
@@ -226,6 +181,75 @@ components:
         sourceMetadata:
           description: Selected key-value tags from original source metadata
           $ref: '#/components/schemas/SourceMetadata'
+    LastProcessedResponse:
+      description: Provide info on last processed record by ETL/analysis process
+      type: object
+      properties:
+        timestamp:
+          description: Most recent processing timestamp by Cuein
+          type: string
+          format: date-time
+        latestMessageTimestamp:
+          description: Latest message timestamp of processed conversations
+          type: string
+          format: date-time
+    MetricResponse:
+      description: AI driven annotations/score for conversations
+      type: object
+      properties:
+        label:
+          description: Name for a specific annotation/metric
+          type: string
+          enum:
+          - deflection
+          - inferredCSAT
+          - effortScore
+          - resolved
+          - abandoned
+          - frustration
+          - confusion
+          - nextSteps
+          - transferEscalation
+          - empathy
+        value:
+          description: AI generated  values for various metric values
+          oneOf:
+          - type: string
+          - type: integer
+          - type: number
+          - type: boolean
+    ConversationBulkResponse:
+      description: Response object for returning count and support interaction insights for time frame
+      type: object
+      properties:
+        meta:
+          description: data about returned results
+          type: object
+          properties:
+            count:
+              description: count of conversation insights records returned
+              type: integer
+              format: int64
+            nextToken:
+              description: token to be used for the next batch call (if not present, there are no more results)
+              type: string
+        conversations:
+          description: list of conversation insights records
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationResponse'
+    AdditionalIdKeyValue:
+      description: List of additional id key and values to identify conversations
+      type: object
+      properties:
+        idKey:
+          description: Name of a specific id/key
+          type: string
+          enum:
+          - contactId
+        value:
+          description: Value for the id key
+          type: string
     InsightResponse:
       description: Provides generated summary, clustered category and label for intents/root causes/resolutions
       type: object
@@ -248,11 +272,6 @@ components:
         generatedLabel:
           description: a short label for the insight (for outlier insights not part of existing clusters)
           type: string
-    SourceMetadata:
-      description: Key-values tags from the original source metadata. The keys vary by dataset.
-      type: object
-      additionalProperties:
-        type: string
     CategoryDetails:
       description: Clustered category name and score
       type: object
@@ -265,65 +284,7 @@ components:
         score:
           description: Cluster score between 0 & 1 for insight association with specific cluster label
           type: number
-    ConversationBulkResponse:
-      description: Response object for returning count and support interaction insights for time frame
-      type: object
-      properties:
-        meta:
-          description: data about returned results
-          type: object
-          properties:
-            count:
-              description: count of conversation insights records returned
-              type: integer
-              format: int64
-            nextToken:
-              description: token to be used for the next batch call (if not present, there are no more results)
-              type: string
-        conversations:
-          description: list of conversation insights records
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationResponse'
   parameters:
-    timeframeFrom:
-      name: timeframeFrom
-      in: query
-      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    sourceIds:
-      name: sourceIds
-      in: query
-      description: list of unique customer dataset specific id (caseId/transcriptId)
-      schema:
-        type: array
-        items:
-          type: string
-    timeframeTo:
-      name: timeframeTo
-      in: query
-      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    nextToken:
-      name: nextToken
-      in: query
-      description: Token to use for next batch lookup (empty returns the first batch of records)
-      required: false
-      schema:
-        type: string
-    id:
-      name: id
-      in: path
-      description: unique customer dataset specific id (caseId/transcriptId)
-      required: true
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -332,14 +293,52 @@ components:
       schema:
         type: integer
         format: int64
+    nextToken:
+      name: nextToken
+      in: query
+      description: Token to use for next batch lookup (empty returns the first batch of records)
+      required: false
+      schema:
+        type: string
+    timeframeFrom:
+      name: timeframeFrom
+      in: query
+      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    timeframeTo:
+      name: timeframeTo
+      in: query
+      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    id:
+      name: id
+      in: path
+      description: unique customer dataset specific id (caseId/transcriptId)
+      required: true
+      schema:
+        type: string
+    sourceIds:
+      name: sourceIds
+      in: query
+      description: list of unique customer dataset specific id (caseId/transcriptId)
+      schema:
+        type: array
+        items:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       name: x-api-key
       in: header
 externalDocs:
-  description: Find out more about Cuein
-  url: https://cuein.ai
+  description: Find out more about Cuein.
+  url: http://cuein.ai
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

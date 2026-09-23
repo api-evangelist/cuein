@@ -2,14 +2,12 @@ generated: '2026-08-14'
 method: derived
 status: candidate
 source: openapi/cuein-insights-openapi.json, openapi/cuein-answers-openapi.json
-note: >-
-  No official hosted or local Cuein MCP server exists. The public MCP registry returns
-  zero servers for "cuein"; no npm or PyPI package is published under the name; the
-  developer hub's llms.txt index lists no MCP page; and mcp.cuein.ai resolves only to
-  registrar parking and serves nothing over HTTPS. The tool list below is derived
-  one-per-operation from the published OpenAPI as a candidate only; operationIds are
-  verbatim. Note that these candidate tools would target api.cuein.ai, which no longer
-  resolves — see lifecycle/cuein-lifecycle.yml.
+note: No official hosted or local Cuein MCP server exists. The public MCP registry returns zero servers
+  for "cuein"; no npm or PyPI package is published under the name; the developer hub's llms.txt index
+  lists no MCP page; and mcp.cuein.ai resolves only to registrar parking and serves nothing over HTTPS.
+  The tool list below is derived one-per-operation from the published OpenAPI as a candidate only; operationIds
+  are verbatim. Note that these candidate tools would target api.cuein.ai, which no longer resolves —
+  see lifecycle/cuein-lifecycle.yml.
 searched:
 - source: https://registry.modelcontextprotocol.io/v0/servers?search=cuein
   status: 200
@@ -45,13 +43,7 @@ tools:
   source_operation: openapi/cuein-answers-openapi.json#getAnswer
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
-  verified: searched
+  verified: derived
   tools: 5
-  checked: '2026-08-14'
-  source: >-
-    MCP registry search, npm/PyPI search, developer-hub llms.txt, and a direct probe of
-    mcp.cuein.ai — nobody ships a Cuein MCP server, remote or stdio
+  checked: '2026-08-12'
+  source: catalog MCP census

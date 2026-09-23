@@ -1,8 +1,8 @@
 {
   "provider": "cuein",
   "sources": [
-    "cuein-answers-api-openapi.yml",
-    "cuein-conversations-api-openapi.yml"
+    "_original/cuein-answers-openapi.json",
+    "_original/cuein-insights-openapi.json"
   ],
   "outputs": [
     "cuein-answers-api-openapi.yml",
@@ -11,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cuein-answers-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "cuein-insights-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cuein-answers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cuein-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

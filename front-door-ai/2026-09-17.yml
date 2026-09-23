@@ -1,0 +1,35 @@
+# Front Door AI Index — cuein — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: cuein
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: cuein.ai
+  final_host: cuein.ai
+  ownership: own
+  owner: cuein
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 22
+  host_score: 22
+  density: 31.16
+  words: 706
+  tiers:
+    agentic: 12
+    core: 9
+    model: 1
+  ambiguous: 10
+  top_terms:
+    agent: 9
+    AI: 6
+    chatbot: 3
+    prompts: 3
+    LLMs: 2
+    agentic: 2
+    copilot: 2
+    fine-tune: 2
+    ChatGPT: 1
+    automation: 1
+    large language model: 1
