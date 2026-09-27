@@ -47,10 +47,13 @@ image: https://files.readme.io/083b62d-Logo.svg
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-14'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-24
 tags:
 - Company
 - Customer Experience
-- Customer-Support
+- Customer Support
 - Conversation Intelligence
 - Generative AI
 - Insights
@@ -65,9 +68,10 @@ tags_raw:
 - Insights
 - Knowledge Base
 - Contact Center
+- Customer-Support
 apis:
 - aid: cuein:cuein-answers-api
-  name: Cuein answers API
+  name: Cuein Answers API
   description: APIs for getting answers
   humanURL: https://cuein-api.readme.io/reference
   baseURL: https://api.cuein.ai/answers/v1
@@ -79,7 +83,7 @@ apis:
   - type: OpenAPI
     url: openapi/cuein-answers-api-openapi.yml
 - aid: cuein:cuein-conversations-api
-  name: Cuein conversations API
+  name: Cuein Conversations API
   description: APIs for retrieving customer-support interaction insights
   humanURL: https://cuein-api.readme.io/reference
   baseURL: https://api.cuein.ai/insights/v1

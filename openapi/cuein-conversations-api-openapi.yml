@@ -15,7 +15,7 @@ paths:
       tags:
       - Conversations
       summary: Retrieve paginated conversation insights records based on date range as input
-      operationId: Retrieve insights for multiple conversations
+      operationId: RetrieveInsightsForMultipleConversations
       parameters:
       - $ref: '#/components/parameters/timeframeFrom'
       - $ref: '#/components/parameters/timeframeTo'
@@ -39,11 +39,13 @@ paths:
           content: {}
       security:
       - ApiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Retrieve insights for multiple conversations
     delete:
       tags:
       - Conversations
       summary: Schedule deletion of conversation text (utterance text) from insight records…
-      operationId: Schedule deletion of conversation text for multiple conversations
+      operationId: ScheduleDeletionOfConversationTextForMultipleConversations
       parameters:
       - $ref: '#/components/parameters/sourceIds'
       responses:
@@ -61,12 +63,14 @@ paths:
           content: {}
       security:
       - ApiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Schedule deletion of conversation text for multiple conversations
   /conversations/meta/lastProcessed:
     get:
       tags:
       - Conversations
       summary: Retrieves the latest updated timestamp of conversation that has been processed…
-      operationId: Retrieve the latest processed conversation timestamp
+      operationId: RetrieveTheLatestProcessedConversationTimestamp
       responses:
         '200':
           description: successful operation
@@ -85,12 +89,14 @@ paths:
           content: {}
       security:
       - ApiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Retrieve the latest processed conversation timestamp
   /conversations/{id}:
     get:
       tags:
       - Conversations
       summary: Retrieve single conversation insights record by id
-      operationId: Retrieve insights for a conversation
+      operationId: RetrieveInsightsForAConversation
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -113,7 +119,56 @@ paths:
           content: {}
       security:
       - ApiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Retrieve insights for a conversation
 components:
+  parameters:
+    sourceIds:
+      name: sourceIds
+      in: query
+      description: list of unique customer dataset specific id (caseId/transcriptId)
+      schema:
+        type: array
+        items:
+          type: string
+    timeframeTo:
+      name: timeframeTo
+      in: query
+      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    id:
+      name: id
+      in: path
+      description: unique customer dataset specific id (caseId/transcriptId)
+      required: true
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Limit of results to return (default system limits exist)
+      required: true
+      schema:
+        type: integer
+        format: int64
+    timeframeFrom:
+      name: timeframeFrom
+      in: query
+      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    nextToken:
+      name: nextToken
+      in: query
+      description: Token to use for next batch lookup (empty returns the first batch of records)
+      required: false
+      schema:
+        type: string
   schemas:
     SourceMetadata:
       description: Key-values tags from the original source metadata. The keys vary by dataset.
@@ -181,6 +236,40 @@ components:
         sourceMetadata:
           description: Selected key-value tags from original source metadata
           $ref: '#/components/schemas/SourceMetadata'
+    CategoryDetails:
+      description: Clustered category name and score
+      type: object
+      required:
+      - label
+      properties:
+        label:
+          description: Cluster label the insight is part of
+          type: string
+        score:
+          description: Cluster score between 0 & 1 for insight association with specific cluster label
+          type: number
+    InsightResponse:
+      description: Provides generated summary, clustered category and label for intents/root causes/resolutions
+      type: object
+      properties:
+        summary:
+          description: short  description for the specific insight
+          type: string
+        utteranceIndex:
+          description: index of the utterance in the conversation/case (starting from 1)
+          type: integer
+          format: int64
+        messageId:
+          description: optional reference to the message id in the conversation (if provided)
+          type: string
+        categories:
+          description: one or more cluster categories the insight belongs to
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryDetails'
+        generatedLabel:
+          description: a short label for the insight (for outlier insights not part of existing clusters)
+          type: string
     LastProcessedResponse:
       description: Provide info on last processed record by ETL/analysis process
       type: object
@@ -193,6 +282,26 @@ components:
           description: Latest message timestamp of processed conversations
           type: string
           format: date-time
+    ConversationBulkResponse:
+      description: Response object for returning count and support interaction insights for time frame
+      type: object
+      properties:
+        meta:
+          description: data about returned results
+          type: object
+          properties:
+            count:
+              description: count of conversation insights records returned
+              type: integer
+              format: int64
+            nextToken:
+              description: token to be used for the next batch call (if not present, there are no more results)
+              type: string
+        conversations:
+          description: list of conversation insights records
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationResponse'
     MetricResponse:
       description: AI driven annotations/score for conversations
       type: object
@@ -218,26 +327,6 @@ components:
           - type: integer
           - type: number
           - type: boolean
-    ConversationBulkResponse:
-      description: Response object for returning count and support interaction insights for time frame
-      type: object
-      properties:
-        meta:
-          description: data about returned results
-          type: object
-          properties:
-            count:
-              description: count of conversation insights records returned
-              type: integer
-              format: int64
-            nextToken:
-              description: token to be used for the next batch call (if not present, there are no more results)
-              type: string
-        conversations:
-          description: list of conversation insights records
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationResponse'
     AdditionalIdKeyValue:
       description: List of additional id key and values to identify conversations
       type: object
@@ -249,87 +338,6 @@ components:
           - contactId
         value:
           description: Value for the id key
-          type: string
-    InsightResponse:
-      description: Provides generated summary, clustered category and label for intents/root causes/resolutions
-      type: object
-      properties:
-        summary:
-          description: short  description for the specific insight
-          type: string
-        utteranceIndex:
-          description: index of the utterance in the conversation/case (starting from 1)
-          type: integer
-          format: int64
-        messageId:
-          description: optional reference to the message id in the conversation (if provided)
-          type: string
-        categories:
-          description: one or more cluster categories the insight belongs to
-          type: array
-          items:
-            $ref: '#/components/schemas/CategoryDetails'
-        generatedLabel:
-          description: a short label for the insight (for outlier insights not part of existing clusters)
-          type: string
-    CategoryDetails:
-      description: Clustered category name and score
-      type: object
-      required:
-      - label
-      properties:
-        label:
-          description: Cluster label the insight is part of
-          type: string
-        score:
-          description: Cluster score between 0 & 1 for insight association with specific cluster label
-          type: number
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Limit of results to return (default system limits exist)
-      required: true
-      schema:
-        type: integer
-        format: int64
-    nextToken:
-      name: nextToken
-      in: query
-      description: Token to use for next batch lookup (empty returns the first batch of records)
-      required: false
-      schema:
-        type: string
-    timeframeFrom:
-      name: timeframeFrom
-      in: query
-      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    timeframeTo:
-      name: timeframeTo
-      in: query
-      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    id:
-      name: id
-      in: path
-      description: unique customer dataset specific id (caseId/transcriptId)
-      required: true
-      schema:
-        type: string
-    sourceIds:
-      name: sourceIds
-      in: query
-      description: list of unique customer dataset specific id (caseId/transcriptId)
-      schema:
-        type: array
-        items:
           type: string
   securitySchemes:
     ApiKeyAuth:

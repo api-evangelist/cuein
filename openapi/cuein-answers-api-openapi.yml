@@ -42,54 +42,18 @@ paths:
       security:
       - ApiKeyAuth: []
 components:
-  schemas:
-    ReferenceDocument:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the Document
-        id:
-          type: string
-          description: Document Id
-    AnswerResponse:
-      required:
-      - answer
-      - answered
-      type: object
-      properties:
-        answer:
-          type: string
-          description: Answer to the question
-        referenceDocuments:
-          type: array
-          description: Documents used in the Answer
-          items:
-            $ref: '#/components/schemas/ReferenceDocument'
-        answered:
-          type: boolean
-          description: Whether or not the question was answered
   parameters:
-    customerId:
-      name: customerId
+    userType:
+      name: userType
       in: query
-      description: Customer making the request
+      description: Type of user making the request
       schema:
         type: string
-    question:
-      name: question
-      in: query
-      description: Question to be answered
-      schema:
-        type: string
-    numDocuments:
-      name: numDocuments
-      in: query
-      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
-      schema:
-        type: number
+        enum:
+        - chatbot
+        - customer
+        - agent
+        - admin
     filter:
       name: filter
       in: query
@@ -120,6 +84,24 @@ components:
       description: Name of user making the request
       schema:
         type: string
+    numDocuments:
+      name: numDocuments
+      in: query
+      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
+      schema:
+        type: number
+    customerId:
+      name: customerId
+      in: query
+      description: Customer making the request
+      schema:
+        type: string
+    question:
+      name: question
+      in: query
+      description: Question to be answered
+      schema:
+        type: string
     documentType:
       name: documentType
       in: query
@@ -131,17 +113,35 @@ components:
         - internal
         - all
         default: public
-    userType:
-      name: userType
-      in: query
-      description: Type of user making the request
-      schema:
-        type: string
-        enum:
-        - chatbot
-        - customer
-        - agent
-        - admin
+  schemas:
+    ReferenceDocument:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Document
+        id:
+          type: string
+          description: Document Id
+    AnswerResponse:
+      required:
+      - answer
+      - answered
+      type: object
+      properties:
+        answer:
+          type: string
+          description: Answer to the question
+        referenceDocuments:
+          type: array
+          description: Documents used in the Answer
+          items:
+            $ref: '#/components/schemas/ReferenceDocument'
+        answered:
+          type: boolean
+          description: Whether or not the question was answered
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
