@@ -123,6 +123,29 @@ paths:
       x-operation-id-original: Retrieve insights for a conversation
 components:
   parameters:
+    limit:
+      name: limit
+      in: query
+      description: Limit of results to return (default system limits exist)
+      required: true
+      schema:
+        type: integer
+        format: int64
+    id:
+      name: id
+      in: path
+      description: unique customer dataset specific id (caseId/transcriptId)
+      required: true
+      schema:
+        type: string
+    timeframeFrom:
+      name: timeframeFrom
+      in: query
+      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
     sourceIds:
       name: sourceIds
       in: query
@@ -135,29 +158,6 @@ components:
       name: timeframeTo
       in: query
       description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    id:
-      name: id
-      in: path
-      description: unique customer dataset specific id (caseId/transcriptId)
-      required: true
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Limit of results to return (default system limits exist)
-      required: true
-      schema:
-        type: integer
-        format: int64
-    timeframeFrom:
-      name: timeframeFrom
-      in: query
-      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
       required: true
       schema:
         type: string
@@ -236,18 +236,6 @@ components:
         sourceMetadata:
           description: Selected key-value tags from original source metadata
           $ref: '#/components/schemas/SourceMetadata'
-    CategoryDetails:
-      description: Clustered category name and score
-      type: object
-      required:
-      - label
-      properties:
-        label:
-          description: Cluster label the insight is part of
-          type: string
-        score:
-          description: Cluster score between 0 & 1 for insight association with specific cluster label
-          type: number
     InsightResponse:
       description: Provides generated summary, clustered category and label for intents/root causes/resolutions
       type: object
@@ -302,6 +290,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConversationResponse'
+    AdditionalIdKeyValue:
+      description: List of additional id key and values to identify conversations
+      type: object
+      properties:
+        idKey:
+          description: Name of a specific id/key
+          type: string
+          enum:
+          - contactId
+        value:
+          description: Value for the id key
+          type: string
     MetricResponse:
       description: AI driven annotations/score for conversations
       type: object
@@ -327,18 +327,18 @@ components:
           - type: integer
           - type: number
           - type: boolean
-    AdditionalIdKeyValue:
-      description: List of additional id key and values to identify conversations
+    CategoryDetails:
+      description: Clustered category name and score
       type: object
+      required:
+      - label
       properties:
-        idKey:
-          description: Name of a specific id/key
+        label:
+          description: Cluster label the insight is part of
           type: string
-          enum:
-          - contactId
-        value:
-          description: Value for the id key
-          type: string
+        score:
+          description: Cluster score between 0 & 1 for insight association with specific cluster label
+          type: number
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

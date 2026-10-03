@@ -43,63 +43,10 @@ paths:
       - ApiKeyAuth: []
 components:
   parameters:
-    userType:
-      name: userType
-      in: query
-      description: Type of user making the request
-      schema:
-        type: string
-        enum:
-        - chatbot
-        - customer
-        - agent
-        - admin
-    filter:
-      name: filter
-      in: query
-      description: Key-Value pairs to be used as filters. All filters will be treated as AND. Ex. ?filter[filter_1]=val_1,val_2&filter[filter_2]=val_3,val_4.
-      schema:
-        type: object
-        additionalProperties:
-          type: array
-          items:
-            type: string
-      style: form
-      explode: true
-    tenantId:
-      name: tenantId
-      in: query
-      description: Identifier for the tenant/client whose documents will be used for answering the question
-      schema:
-        type: string
     sessionId:
       name: sessionId
       in: query
       description: Unique identifier for the chat session in which the question was asked
-      schema:
-        type: string
-    userName:
-      name: userName
-      in: query
-      description: Name of user making the request
-      schema:
-        type: string
-    numDocuments:
-      name: numDocuments
-      in: query
-      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
-      schema:
-        type: number
-    customerId:
-      name: customerId
-      in: query
-      description: Customer making the request
-      schema:
-        type: string
-    question:
-      name: question
-      in: query
-      description: Question to be answered
       schema:
         type: string
     documentType:
@@ -113,6 +60,59 @@ components:
         - internal
         - all
         default: public
+    tenantId:
+      name: tenantId
+      in: query
+      description: Identifier for the tenant/client whose documents will be used for answering the question
+      schema:
+        type: string
+    userType:
+      name: userType
+      in: query
+      description: Type of user making the request
+      schema:
+        type: string
+        enum:
+        - chatbot
+        - customer
+        - agent
+        - admin
+    numDocuments:
+      name: numDocuments
+      in: query
+      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
+      schema:
+        type: number
+    userName:
+      name: userName
+      in: query
+      description: Name of user making the request
+      schema:
+        type: string
+    customerId:
+      name: customerId
+      in: query
+      description: Customer making the request
+      schema:
+        type: string
+    question:
+      name: question
+      in: query
+      description: Question to be answered
+      schema:
+        type: string
+    filter:
+      name: filter
+      in: query
+      description: Key-Value pairs to be used as filters. All filters will be treated as AND. Ex. ?filter[filter_1]=val_1,val_2&filter[filter_2]=val_3,val_4.
+      schema:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      style: form
+      explode: true
   schemas:
     ReferenceDocument:
       required:
