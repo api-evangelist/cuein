@@ -43,27 +43,22 @@ paths:
       - ApiKeyAuth: []
 components:
   parameters:
-    sessionId:
-      name: sessionId
-      in: query
-      description: Unique identifier for the chat session in which the question was asked
-      schema:
-        type: string
-    documentType:
-      name: documentType
-      in: query
-      description: Type of document to be used for search
-      schema:
-        type: string
-        enum:
-        - public
-        - internal
-        - all
-        default: public
     tenantId:
       name: tenantId
       in: query
       description: Identifier for the tenant/client whose documents will be used for answering the question
+      schema:
+        type: string
+    userName:
+      name: userName
+      in: query
+      description: Name of user making the request
+      schema:
+        type: string
+    sessionId:
+      name: sessionId
+      in: query
+      description: Unique identifier for the chat session in which the question was asked
       schema:
         type: string
     userType:
@@ -83,12 +78,17 @@ components:
       description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
       schema:
         type: number
-    userName:
-      name: userName
+    documentType:
+      name: documentType
       in: query
-      description: Name of user making the request
+      description: Type of document to be used for search
       schema:
         type: string
+        enum:
+        - public
+        - internal
+        - all
+        default: public
     customerId:
       name: customerId
       in: query
@@ -114,17 +114,6 @@ components:
       style: form
       explode: true
   schemas:
-    ReferenceDocument:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the Document
-        id:
-          type: string
-          description: Document Id
     AnswerResponse:
       required:
       - answer
@@ -142,6 +131,17 @@ components:
         answered:
           type: boolean
           description: Whether or not the question was answered
+    ReferenceDocument:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Document
+        id:
+          type: string
+          description: Document Id
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
