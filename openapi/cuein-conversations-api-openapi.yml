@@ -122,120 +122,7 @@ paths:
       x-operation-id-source: normalized
       x-operation-id-original: Retrieve insights for a conversation
 components:
-  parameters:
-    id:
-      name: id
-      in: path
-      description: unique customer dataset specific id (caseId/transcriptId)
-      required: true
-      schema:
-        type: string
-    sourceIds:
-      name: sourceIds
-      in: query
-      description: list of unique customer dataset specific id (caseId/transcriptId)
-      schema:
-        type: array
-        items:
-          type: string
-    limit:
-      name: limit
-      in: query
-      description: Limit of results to return (default system limits exist)
-      required: true
-      schema:
-        type: integer
-        format: int64
-    timeframeFrom:
-      name: timeframeFrom
-      in: query
-      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    timeframeTo:
-      name: timeframeTo
-      in: query
-      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
-      required: true
-      schema:
-        type: string
-        format: date-time
-    nextToken:
-      name: nextToken
-      in: query
-      description: Token to use for next batch lookup (empty returns the first batch of records)
-      required: false
-      schema:
-        type: string
   schemas:
-    ConversationResponse:
-      description: Provides insights for a single conversation
-      type: object
-      properties:
-        sourceId:
-          description: unique customer dataset specific id (caseId/transcriptId)
-          type: string
-        summary:
-          description: summary for the entire conversation
-          type: string
-        timestamp:
-          description: Returns the timestamp of the last message in the conversation
-          type: string
-          format: date-time
-        processedTimestamp:
-          description: Returns processing timestamp by Cuein for the conversation
-          type: string
-          format: date-time
-        additionalId:
-          description: list of additional identifiers for the conversation
-          type: array
-          items:
-            $ref: '#/components/schemas/AdditionalIdKeyValue'
-        intents:
-          description: list of contact reasons/user intents for which user is seeking support/assistance
-          type: array
-          items:
-            $ref: '#/components/schemas/InsightResponse'
-        rootCauses:
-          description: list of root causes for the contact reasons/user intents
-          type: array
-          items:
-            $ref: '#/components/schemas/InsightResponse'
-        resolutions:
-          description: list of resolutions provided by bot or agent for providing support/assistance
-          type: array
-          items:
-            $ref: '#/components/schemas/InsightResponse'
-        policies:
-          description: list of policies associated with the session
-          type: array
-          items:
-            $ref: '#/components/schemas/InsightResponse'
-        metrics:
-          description: AI driven annotations/metrics for the conversation session
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponse'
-        botMetrics:
-          description: AI driven annotations/metrics for the chatbot section of the conversation session, if any
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponse'
-        agentMetrics:
-          description: AI driven annotations/metrics for the agent section of the conversation session, if any
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponse'
-        sourceMetadata:
-          description: Selected key-value tags from original source metadata
-          $ref: '#/components/schemas/SourceMetadata'
-    SourceMetadata:
-      description: Key-values tags from the original source metadata. The keys vary by dataset.
-      type: object
-      additionalProperties:
-        type: string
     MetricResponse:
       description: AI driven annotations/score for conversations
       type: object
@@ -315,6 +202,72 @@ components:
         generatedLabel:
           description: a short label for the insight (for outlier insights not part of existing clusters)
           type: string
+    ConversationResponse:
+      description: Provides insights for a single conversation
+      type: object
+      properties:
+        sourceId:
+          description: unique customer dataset specific id (caseId/transcriptId)
+          type: string
+        summary:
+          description: summary for the entire conversation
+          type: string
+        timestamp:
+          description: Returns the timestamp of the last message in the conversation
+          type: string
+          format: date-time
+        processedTimestamp:
+          description: Returns processing timestamp by Cuein for the conversation
+          type: string
+          format: date-time
+        additionalId:
+          description: list of additional identifiers for the conversation
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalIdKeyValue'
+        intents:
+          description: list of contact reasons/user intents for which user is seeking support/assistance
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightResponse'
+        rootCauses:
+          description: list of root causes for the contact reasons/user intents
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightResponse'
+        resolutions:
+          description: list of resolutions provided by bot or agent for providing support/assistance
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightResponse'
+        policies:
+          description: list of policies associated with the session
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightResponse'
+        metrics:
+          description: AI driven annotations/metrics for the conversation session
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+        botMetrics:
+          description: AI driven annotations/metrics for the chatbot section of the conversation session, if any
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+        agentMetrics:
+          description: AI driven annotations/metrics for the agent section of the conversation session, if any
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+        sourceMetadata:
+          description: Selected key-value tags from original source metadata
+          $ref: '#/components/schemas/SourceMetadata'
+    SourceMetadata:
+      description: Key-values tags from the original source metadata. The keys vary by dataset.
+      type: object
+      additionalProperties:
+        type: string
     LastProcessedResponse:
       description: Provide info on last processed record by ETL/analysis process
       type: object
@@ -339,6 +292,53 @@ components:
         value:
           description: Value for the id key
           type: string
+  parameters:
+    nextToken:
+      name: nextToken
+      in: query
+      description: Token to use for next batch lookup (empty returns the first batch of records)
+      required: false
+      schema:
+        type: string
+    timeframeTo:
+      name: timeframeTo
+      in: query
+      description: Ending time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    timeframeFrom:
+      name: timeframeFrom
+      in: query
+      description: Starting time frame value ('YYYY-MM-DD' or 'YYYY-MM-DD HH:mm:SS') for filtering conversation records on the processing timestamp by Cuein
+      required: true
+      schema:
+        type: string
+        format: date-time
+    limit:
+      name: limit
+      in: query
+      description: Limit of results to return (default system limits exist)
+      required: true
+      schema:
+        type: integer
+        format: int64
+    sourceIds:
+      name: sourceIds
+      in: query
+      description: list of unique customer dataset specific id (caseId/transcriptId)
+      schema:
+        type: array
+        items:
+          type: string
+    id:
+      name: id
+      in: path
+      description: unique customer dataset specific id (caseId/transcriptId)
+      required: true
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -43,41 +43,12 @@ paths:
       - ApiKeyAuth: []
 components:
   parameters:
-    tenantId:
-      name: tenantId
-      in: query
-      description: Identifier for the tenant/client whose documents will be used for answering the question
-      schema:
-        type: string
-    userName:
-      name: userName
-      in: query
-      description: Name of user making the request
-      schema:
-        type: string
     sessionId:
       name: sessionId
       in: query
       description: Unique identifier for the chat session in which the question was asked
       schema:
         type: string
-    userType:
-      name: userType
-      in: query
-      description: Type of user making the request
-      schema:
-        type: string
-        enum:
-        - chatbot
-        - customer
-        - agent
-        - admin
-    numDocuments:
-      name: numDocuments
-      in: query
-      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
-      schema:
-        type: number
     documentType:
       name: documentType
       in: query
@@ -89,10 +60,27 @@ components:
         - internal
         - all
         default: public
-    customerId:
-      name: customerId
+    numDocuments:
+      name: numDocuments
       in: query
-      description: Customer making the request
+      description: Number of Documents to use as context when generating an Answer (min 1, max 10, default 3)
+      schema:
+        type: number
+    userType:
+      name: userType
+      in: query
+      description: Type of user making the request
+      schema:
+        type: string
+        enum:
+        - chatbot
+        - customer
+        - agent
+        - admin
+    userName:
+      name: userName
+      in: query
+      description: Name of user making the request
       schema:
         type: string
     question:
@@ -113,7 +101,30 @@ components:
             type: string
       style: form
       explode: true
+    customerId:
+      name: customerId
+      in: query
+      description: Customer making the request
+      schema:
+        type: string
+    tenantId:
+      name: tenantId
+      in: query
+      description: Identifier for the tenant/client whose documents will be used for answering the question
+      schema:
+        type: string
   schemas:
+    ReferenceDocument:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Document
+        id:
+          type: string
+          description: Document Id
     AnswerResponse:
       required:
       - answer
@@ -131,17 +142,6 @@ components:
         answered:
           type: boolean
           description: Whether or not the question was answered
-    ReferenceDocument:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the Document
-        id:
-          type: string
-          description: Document Id
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
