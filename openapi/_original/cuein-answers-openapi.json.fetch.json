@@ -1,0 +1,12 @@
+{
+ "url": "https://cuein-api.readme.io/openapi/65e4827280f0a200471227fe",
+ "requested_url": "https://cuein-api.readme.io/openapi/65e4827280f0a200471227fe",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 3551,
+ "sha256": "38580c6a2aa0d6012f439c6954e6202bdc0c8106c2a2bb75d74ebff5cdabe56b",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
