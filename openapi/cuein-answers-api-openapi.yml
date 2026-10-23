@@ -153,3 +153,9 @@ externalDocs:
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
+x-provenance:
+  method: harvested
+  publisher: Cuein
+  source: https://cuein-api.readme.io/openapi/65e4827280f0a200471227fe
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
