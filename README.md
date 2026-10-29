@@ -64,6 +64,130 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Cuein is a company surfaced as a portfolio company of lightspeed-venture-partners and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Cuein is an AI-native customer-experience platform ("co-pilot for customer experience teams") that unifies structured and unstructured customer-support data and applies generative AI to surface contact reasons, root causes, resolutions, and metrics such as Inferred CSAT and Resolution Rate. Its public developer surface exposes two REST APIs: an Insights API for retrieving per-conversation and bulk conversation insights over a date range, and an Answers API that generates answers grounded in a tenant's knowledge articles and documents. Both APIs use x-api-key authentication and are documented on a ReadMe-hosted developer hub. Cuein was acquired by ServiceNow (announced Q1 2025); the standalone developer hub remains live. Backed by Lightspeed Venture Partners.
 
-Backed by: lightspeed-venture-partners
+**Areas:** Company · Customer Experience · Customer Service · Conversation Intelligence · Generative AI · Insights · Knowledge Base · Contact Center
+
+## Cuein on APIs.io
+
+Everything profiled for Cuein is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cuein/](https://apis.io/providers/cuein/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Cuein Answers API](https://apis.io/apis/cuein/cuein-answers-api/) — APIs for getting answers
+- [Cuein Conversations API](https://apis.io/apis/cuein/cuein-conversations-api/) — APIs for retrieving customer-support interaction insights
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [cuein](https://apis.io/servers/cuein/cuein/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Cuein Agentic Access](https://apis.io/agentic-access/cuein/cuein-agentic-access/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Cuein answers API](https://apis.io/collections/cuein/open-cuein-answers-api/)
+- [Cuein answers conversations API](https://apis.io/collections/cuein/open-cuein-conversations-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Cuein Answers Overlay](https://apis.io/overlays/cuein/cuein-answers-overlay/)
+- [Cuein Insights Overlay](https://apis.io/overlays/cuein/cuein-insights-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cuein Authentication](https://apis.io/security/cuein/cuein-authentication/)
+- [Cuein Domain Security](https://apis.io/security/cuein/cuein-domain-security/)
+- [Cuein Trust Center](https://apis.io/security/cuein/cuein-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cuein Plans Pricing](https://apis.io/plans/cuein/cuein-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cuein Rate Limits](https://apis.io/rate-limits/cuein/cuein-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://cuein.ai/)
+- [Documentation](https://cuein-api.readme.io/reference)
+- [API reference](https://cuein-api.readme.io/reference)
+- [Blog](https://cuein.ai/blog)
+- [Terms of service](https://cuein.ai/terms)
+- [Privacy policy](https://cuein.ai/privacy)
+- [GitHub](https://github.com/Cuein)
+
+## API Evangelist rating
+
+**Kin Score 33.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 83.9 |
+| Contract quality | 41.9 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 33.9 |
+| Access clarity | 28.9 |
+
+**Agent readiness 24.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.3** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cuein/](https://apis.io/providers/cuein/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cuein: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cuein/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
